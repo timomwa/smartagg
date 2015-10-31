@@ -58,7 +58,7 @@
 			<version>0.1.3</version>
 		</dependency>
 
-<!-- smack -->
+<!-- smack -
 		<dependency> 
 		<groupId>jivesoftware</groupId> 
 		<artifactId>smack</artifactId> 
@@ -69,7 +69,7 @@
 		<groupId>org.igniterealtime.smack</groupId> 
 		<artifactId>smack-extensions</artifactId> 
 		<version>4.1.4</version> 
-		</dependency> 
+		</dependency--> 
 			
 		 
 		
