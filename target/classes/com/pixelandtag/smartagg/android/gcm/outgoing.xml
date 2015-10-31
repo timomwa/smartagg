@@ -1,6 +1,0 @@
-<message xmlns="gcm" id="s0lgW-8">
-	<gcm xmlns="google:mobile:data">{&quot;to&quot;:&quot;3F267DAA9E1EB853&quot;,&quot;delay_while_idle&quot;:true,&quot;collapse_key&quot;:&quot;sample&quot;,&quot;data&quot;:{&quot;message&quot;:&quot;Simple
-		sample
-		sessage&quot;},&quot;message_id&quot;:&quot;m-8391541500320814598&quot;,&quot;time_to_live&quot;:10000}
-	</gcm>
-</message>
