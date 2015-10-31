@@ -99,7 +99,8 @@ public class GCMReg extends HttpServlet {
 			logger.info("GCM_REG_BODY :::  "+body+"\n\n");
 			
 			
-			String registrationid = request.getParameter("registrationId");
+			String registrationid = incomingparams.get("registrationId");
+			logger.info("device registrationid :::  "+registrationid+"\n\n");
 			Device device = deviceEJB.findByRegistrationId(registrationid);
 			if(device==null){
 				device = new Device();

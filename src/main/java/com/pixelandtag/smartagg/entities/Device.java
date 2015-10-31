@@ -19,7 +19,7 @@ public class Device extends BaseEntity<Long>{
 	 */
 	private static final long serialVersionUID = -8145237161096379203L;
 	
-	@Column(name="registrationID", unique=true)
+	@Column(name="registrationID", unique=true, length=300)
 	private String registrationID;
 	
 	@Column(name="registrationDate")
