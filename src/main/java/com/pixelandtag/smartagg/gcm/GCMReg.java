@@ -90,6 +90,7 @@ public class GCMReg extends HttpServlet {
 			
 		}
 		
+		logger.info(params);
 		
 		try {
 			
