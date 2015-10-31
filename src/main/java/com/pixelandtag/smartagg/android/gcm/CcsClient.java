@@ -42,7 +42,7 @@ public class CcsClient {
     private static final String GCM_USERNAME = GCM_PROJECT_NUMBER;
 
     public static final String YOUR_PROJECT_ID = "smartagg-1110";
-    public static final String YOUR_API_KEY = "AIzaSyBx_qTrOvK7fUIMuRPUuiJ963u3ZpgOoEk"; // your API Key
+    public static final String YOUR_API_KEY = "AIzaSyDRdg97fk66fJlSu_St6ic1InW9xLEat70";//"AIzaSyBx_qTrOvK7fUIMuRPUuiJ963u3ZpgOoEk"; // your API Key
     public static final String YOUR_PHONE_REG_ID = "APA91bFH4foFODNRbN7PbS4hQXCk-phr88pn2uiU-DgyUB6d5NPa1g0sUf0PgEXFo6GEdpPP-I7O5rI4niKqam_qBSuhJkc0TuUnxpRvMGDVvWjN_Eywtp--YQo1w8_g-XkZ4JDNrCCnIw5w7yXWJzFucXmsWFeyrQ";//"<your test phone's registration id here>";
 
     static Random random = new Random();
@@ -93,7 +93,7 @@ public class CcsClient {
     }
     
     /**
-     * Sends a downstream GCM message.
+     * Sends a downstream GCM message.	
      * @throws NotConnectedException 
      */
     public void send(String jsonRequest) throws NotConnectedException {
