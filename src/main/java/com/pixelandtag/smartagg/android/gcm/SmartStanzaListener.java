@@ -18,7 +18,7 @@ import org.json.simple.parser.ParseException;
 
 public class SmartStanzaListener implements StanzaListener {
 	
-	private XMPPConnection connection;
+	//private XMPPConnection connection;
 
 	private static final Logger logger = Logger.getLogger("SmackCcsClient");
 
@@ -54,6 +54,7 @@ public class SmartStanzaListener implements StanzaListener {
 			handleIncomingDataMessage(msg);
 			// Send ACK to CCS
 			String ack = createJsonAck(msg.getFrom(), msg.getMessageId());
+			logger.info(" \t ack to be sent back ? "+ack);
 			send(ack);
 		} else if ("ack".equals(messageType.toString())) {
 			// Process Ack
@@ -121,7 +122,8 @@ public class SmartStanzaListener implements StanzaListener {
      */
     public void send(String jsonRequest) throws NotConnectedException {
         Stanza request = new GcmPacketExtension(jsonRequest).toPacket();
-        connection.sendStanza(request);
+        CcsClient.getInstance().connection.sendStanza(request);
+        // connection.sendStanza(request);
 		
     }
     

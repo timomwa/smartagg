@@ -16,10 +16,8 @@ import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.SmackException.NotConnectedException;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.filter.StanzaFilter;
 import org.jivesoftware.smack.filter.StanzaTypeFilter;
 import org.jivesoftware.smack.packet.ExtensionElement;
-import org.jivesoftware.smack.packet.PacketExtension;
 import org.jivesoftware.smack.packet.Stanza;
 import org.jivesoftware.smack.provider.ExtensionElementProvider;
 import org.jivesoftware.smack.provider.ProviderManager;
@@ -43,7 +41,7 @@ public class CcsClient {
 
     public static final String YOUR_PROJECT_ID = "smartagg-1110";
     public static final String YOUR_API_KEY = "AIzaSyDRdg97fk66fJlSu_St6ic1InW9xLEat70";//"AIzaSyBx_qTrOvK7fUIMuRPUuiJ963u3ZpgOoEk"; // your API Key
-    public static final String YOUR_PHONE_REG_ID = "APA91bFH4foFODNRbN7PbS4hQXCk-phr88pn2uiU-DgyUB6d5NPa1g0sUf0PgEXFo6GEdpPP-I7O5rI4niKqam_qBSuhJkc0TuUnxpRvMGDVvWjN_Eywtp--YQo1w8_g-XkZ4JDNrCCnIw5w7yXWJzFucXmsWFeyrQ";//"<your test phone's registration id here>";
+    public static final String YOUR_PHONE_REG_ID = "cWzi7Uk4pgU:APA91bE8gmbwZDKySpQOpjMc2I2s70q9SiQg7RMUsZC_VFA4JZmUJBM96ETy_rJYEXG0XAckA7z-gpD-oY1g4vLD3frGpixHfqbDH5FV4y1SSx6jPrWBnwvKE7ABVEwh98WXBv2FH673";//"<your test phone's registration id here>";
 
     static Random random = new Random();
     XMPPTCPConnection connection;
@@ -94,9 +92,10 @@ public class CcsClient {
     
     /**
      * Sends a downstream GCM message.	
-     * @throws NotConnectedException 
+     * throws NotConnectedException 
      */
     public void send(String jsonRequest) throws NotConnectedException {
+    	logger.info(" >>> "+jsonRequest);
     	Stanza request = new GcmPacketExtension(jsonRequest).toPacket();
         connection.sendStanza(request);
     }
@@ -283,7 +282,7 @@ public class CcsClient {
 
         // Handle incoming packets
         //connection.addStanzaAcknowledgedListener(new SmartStanzaListener());
-        //connection.addAsyncStanzaListener(new SmartStanzaListener(), new StanzaTypeFilter(Stanza.class));
+        connection.addAsyncStanzaListener(new SmartStanzaListener(), new StanzaTypeFilter(Stanza.class));
         //connection.addPacketInterceptor(new SmartStanzaListener(), new StanzaTypeFilter(Stanza.class));
         /*// Log all outgoing packets
         connection.addPacketInterceptor(new PacketInterceptor() {
@@ -301,6 +300,7 @@ public class CcsClient {
 
 	
 	public static void main(String[] args) throws Exception {
+		//BasicConfigurator.configure();
         final String projectId = GCM_PROJECT_NUMBER;
         final String password = YOUR_API_KEY;
         final String toRegId = YOUR_PHONE_REG_ID;
@@ -316,7 +316,11 @@ public class CcsClient {
         // Send a sample hello downstream message to a device.
         String messageId = ccsClient.getRandomMessageId();
         Map<String, String> payload = new HashMap<String, String>();
-        payload.put("message", "We appreciate the small things in life");
+        String longmsg = "d";
+        for(int k = 0; k<2; k++)
+        	longmsg+=longmsg;
+        System.out.println("\n\n\n\t\tsize:: "+longmsg.length());
+        payload.put("message", longmsg);
         payload.put("title", "Smartagg-PixelandContent360");
         String collapseKey = "sample";
         Long timeToLive = 10000L;
@@ -324,7 +328,7 @@ public class CcsClient {
         String jsonmsg = createJsonMessage(toRegId, messageId, payload, collapseKey,
                 timeToLive, delayWhileIdle);
         
-        System.out.println("\n\n \t\t --- jsonmsg : "+jsonmsg);
+        //System.out.println("\n\n \t\t --- jsonmsg : "+jsonmsg);
         ccsClient.send(jsonmsg);
         
         while(true){

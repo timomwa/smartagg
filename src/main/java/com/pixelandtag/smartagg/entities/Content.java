@@ -1,5 +1,6 @@
 package com.pixelandtag.smartagg.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
